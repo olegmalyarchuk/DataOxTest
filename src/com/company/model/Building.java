@@ -17,6 +17,7 @@ public class Building {
     fillRandomPassengers();
   }
 
+  /** This method shows how the elevator work */
   public void runElevator() {
     int step = 0;
     while (true) {
@@ -38,6 +39,7 @@ public class Building {
     }
   }
 
+  /** This method adds passenger to the elevator */
   private int addPassengerToElevator() {
     elevator.startOppositeDirection();
 
@@ -64,16 +66,19 @@ public class Building {
     return excludedPassengers.size();
   }
 
+  /** This method removes passenger to the elevator */
   private int removePassengersFromLift() {
     return elevator.removePassengers();
   }
 
+  /** This method fills elevator with random passengers */
   private void fillRandomPassengers() {
     for (int i = 0; i < countFloors; i++) {
       passengersAtFloor[i] = fillFloor(i + 1);
     }
   }
 
+  /** This method fills floor */
   private ArrayList<Integer> fillFloor(int currentFloor) {
     ArrayList<Integer> floor = new ArrayList<Integer>();
     int countOfPassengers = rand.nextInt(11); // 0...10
@@ -83,6 +88,7 @@ public class Building {
     return floor;
   }
 
+  /** This method creates passenger to the elevator */
   private int createRandomPassenger(int currentFloor) {
     int destinationFloor = currentFloor;
     while (destinationFloor == currentFloor) destinationFloor = rand.nextInt(countFloors) + 1;
@@ -90,12 +96,17 @@ public class Building {
     return destinationFloor;
   }
 
+  /** This method creates random passengers to the elevator */
   private void createRandomPassengers(int count) {
     for (int j = 0; j < count; j++)
       passengersAtFloor[elevator.getCurrentFloor() - 1].add(
           createRandomPassenger(elevator.getCurrentFloor()));
   }
 
+  /**
+   * This method gets direction by count of passengers if peoples who want to go up less then
+   * another peoples set direction false(down) true otherwise
+   */
   private boolean getDirectionByCountPassengers() {
     int currentFloor = elevator.getCurrentFloor();
     if (currentFloor == 1) return true;
@@ -127,6 +138,7 @@ public class Building {
     return result.toString();
   }
 
+  /** This method prints info v if elevator moves down ^ otherwise */
   private void printInfo(int step, int removedPassengers, int addedPassengers) {
     if (elevator.isMoveUp()) System.out.println("^^^^^^^^^^^^^" + "Step " + step + "^^^^^^^^^^^^");
     else System.out.println("vvvvvvvvvvvv" + "Step " + step + "vvvvvvvvvvv");

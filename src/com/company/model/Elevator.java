@@ -12,6 +12,7 @@ public class Elevator {
     this.maxFloor = maxfloor;
   }
 
+  /** This method moves elevator in the following way */
   public void move() {
     startOppositeDirection();
     int nextFloor;
@@ -21,6 +22,7 @@ public class Elevator {
     currentFloor = nextFloor;
   }
 
+  /** This method adds passenger */
   public void addPassenger(int passengerFloor) {
     for (int i = 0; i < CAPACITY; i++) {
       if (passengers[i] == 0) {
@@ -30,6 +32,7 @@ public class Elevator {
     }
   }
 
+  /** This method removes passenger */
   public int removePassengers() {
     int countRemoved = 0;
     for (int i = 0; i < CAPACITY; i++) {
@@ -41,6 +44,7 @@ public class Elevator {
     return countRemoved;
   }
 
+  /** This decides in which way moves */
   public int getClosestFloorWithFullCapacity() {
     int result = 0;
     if (moveUp) {
@@ -61,6 +65,7 @@ public class Elevator {
     return result;
   }
 
+  /** This method checks whether elevator is full */
   public boolean isFull() {
     boolean isFull = true;
     for (int i = 0; i < CAPACITY; i++) {
@@ -72,6 +77,7 @@ public class Elevator {
     return isFull;
   }
 
+  /** This method checks whether elevator is empty */
   public boolean isEmpty() {
     for (int i = 0; i < CAPACITY; i++) {
       if (passengers[i] != 0) {
@@ -97,11 +103,13 @@ public class Elevator {
     this.moveUp = moveUp;
   }
 
+  /** This method change direction in opposite if we reached last or first floot */
   public void startOppositeDirection() {
     if (currentFloor == 1) moveUp = true;
     else moveUp = false;
   }
 
+  @Override
   public String toString() {
     StringBuilder result = new StringBuilder();
     for (int i = 0; i < CAPACITY; i++) {
